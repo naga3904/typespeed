@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1 style="color: crimson">Typing Speed Tester</h1>
+    <p id="para"></p>
+    <input type="text" id="text-box" ><br>
+    <button id="start">Start</button>
+    <script>
+        const elem1 = document.getElementById('para');
+
+        let arrayOne = ["Javascript is one among the most popular programing languages",
+        "Javascript is loosely typed language and we will see about it in next section",
+        "Python is the best suited language for machine learning",
+        "array elements are generally accessed using loop statements"]; 
+        
+        const elem2 = document.getElementById('text-box');
+
+        let randomNum = Math.floor(Math.random()*arrayOne.length);
+
+        const randomSent = arrayOne[randomNum];
+
+        const btn = document.getElementById('start');
+
+        let startTime, endTime;
+
+        function event(){
+            btn.addEventListener('click',function (){
+                if (btn.innerHTML == 'Start' ){
+                    elem2.disabled = false;
+                    elem2.value = "";
+                    elem1.innerHTML = randomSent;
+                    btn.innerHTML = 'Done';
+                    startTime = new Date();
+                }
+                // console.log(btn.innerHTML);
+                else if (btn.innerHTML == 'Done'){
+                    elem2.disabled = true;
+                    endTime = new Date();
+                    const timeDiff = (endTime.getSeconds()-startTime.getSeconds())
+                    if (elem2.value === elem1.innerHTML ){
+                        //elem1.innerHTML = "Text Length : " + elem2.value.length + " Finished in " + timeDiff +" seconds";
+                        alert("Text Length : " + elem2.value.length + " Finished in " + timeDiff +" seconds");
+                    }
+                    else{
+                        elem1.innerHTML = 'WARNING : Please check for spellings and type the given sentence';
+                    } 
+                    btn.innerHTML = 'Start';
+                };
+            });
+            
+        }
+event();
+
+    </script>
+</body>
+</html>
